@@ -267,13 +267,25 @@ window.addEventListener('scroll', () => {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     scrollProgress = window.scrollY / maxScroll;
 
+    const msg = document.querySelector('.scroll-msg');
+    const img1 = document.getElementById('img1');
+    const img2 = document.getElementById('img2');
+
+    // ĐIỀU KHIỂN HÌNH ẢNH BÊN PHẢI (Giai đoạn cuối)
+    if (scrollProgress > 0.9) {
+        // Thêm class 'show' để kích hoạt CSS transition
+        img1.classList.add('show');
+        img2.classList.add('show');
+    } else {
+        img1.classList.remove('show');
+        img2.classList.remove('show');
+    }
     if (!isMusicPlaying && scrollProgress > 0.01 && bgm) {
         bgm.play().catch(() => { });
         isMusicPlaying = true;
     }
 
-    const msg = document.querySelector('.scroll-msg');
-    if (scrollProgress > 0.9) {
+    if (scrollProgress > 0.98) {
         msg.innerHTML = "MERRY CHRISTMAS ❤️";
         msg.style.color = "#e63946";
         msg.style.textShadow = "0 0 8px rgba(255, 255, 255, 0.2)";
@@ -281,9 +293,7 @@ window.addEventListener('scroll', () => {
         subMsg.style.opacity = "1"; // Hiện lời chúc
     } else {
         msg.innerHTML = "Cuộn chuột xuống để thấy điều kỳ diệu...";
-
-        msg.style.color = "rgba(255, 255, 255, 0.7)"; // Màu trắng mờ cho chữ hướng dẫn
-        msg.style.textShadow = "none";
+        msg.style.color = "rgba(255, 255, 255, 0.7)";
         subMsg.style.opacity = "0";
     }
 });
