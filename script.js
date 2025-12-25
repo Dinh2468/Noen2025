@@ -271,15 +271,19 @@ window.addEventListener('scroll', () => {
     const img1 = document.getElementById('img1');
     const img2 = document.getElementById('img2');
 
-    // ĐIỀU KHIỂN HÌNH ẢNH BÊN PHẢI (Giai đoạn cuối)
-    if (scrollProgress > 0.9) {
-        // Thêm class 'show' để kích hoạt CSS transition
-        img1.classList.add('show');
-        img2.classList.add('show');
+    const images = document.querySelectorAll('.memory-photo');
+
+    if (scrollProgress > 0.95) { // Thay 0.99 bằng 0.95 để ảnh hiện sớm hơn và ổn định hơn
+        images.forEach((img, index) => {
+            setTimeout(() => {
+                img.classList.add('show');
+            }, index * 200);
+        });
+
     } else {
-        img1.classList.remove('show');
-        img2.classList.remove('show');
+        images.forEach(img => img.classList.remove('show'));
     }
+
     if (!isMusicPlaying && scrollProgress > 0.01 && bgm) {
         bgm.play().catch(() => { });
         isMusicPlaying = true;

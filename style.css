@@ -65,17 +65,76 @@ canvas {
     transition: opacity 1s ease;
 }
 
-/* Album ảnh bên phải (Giai đoạn 3) */
+
+/* Album ảnh bên phải - Dịch vào trong nhiều hơn */
 .photo-album {
     position: fixed;
-    right: 5%;
-    /* Nằm bên phải màn hình */
+    right: 50px;
+    /* Tăng từ 20px lên 50px để tạo khoảng đệm an toàn với mép màn hình */
     top: 50%;
     transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    width: 300px;
+    /* Thu hẹp khung chứa một chút */
+    height: 80vh;
     z-index: 102;
+    pointer-events: none;
+}
+
+.memory-photo {
+    position: absolute;
+    width: 125px;
+    /* Thu nhỏ thêm 5px nữa để chắc chắn không bị che */
+    height: auto;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    opacity: 0;
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(0.2) translateX(50px);
+    /* Giảm độ trượt để tránh hiện tượng văng ra ngoài khi hiện */
+}
+
+/* Định nghĩa lại vị trí rải rác - Khống chế 'left' chặt chẽ hơn */
+#img1.show {
+    top: 5%;
+    left: 5%;
+    transform: rotate(-8deg) scale(1);
+    opacity: 1;
+}
+
+#img2.show {
+    top: 15%;
+    left: 40%;
+    transform: rotate(10deg) scale(1);
+    opacity: 1;
+}
+
+/* Giảm từ 45% xuống 40% */
+#img3.show {
+    top: 35%;
+    left: -10%;
+    transform: rotate(-5deg) scale(1);
+    opacity: 1;
+}
+
+#img4.show {
+    top: 55%;
+    left: 45%;
+    transform: rotate(7deg) scale(1);
+    opacity: 1;
+}
+
+/* Giảm từ 50% xuống 45% */
+#img5.show {
+    top: 65%;
+    left: 10%;
+    transform: rotate(-12deg) scale(1);
+    opacity: 1;
+}
+
+.memory-photo.show {
+    pointer-events: all;
+    cursor: pointer;
 }
 
 @keyframes bounce {
@@ -94,32 +153,6 @@ canvas {
 }
 
 
-
-.memory-photo {
-    width: 250px;
-    /* Tăng kích thước ảnh cho rõ */
-    height: auto;
-    border: 3px solid #fff;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    opacity: 0;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(100px);
-    /* Đẩy xa hơn để có hiệu ứng trượt vào */
-}
-
-
-/* Thêm vào cuối file style.css */
-.memory-photo.show {
-    opacity: 1;
-    transform: translateX(0) rotate(-5deg);
-    /* Hơi xoay nhẹ cho đẹp */
-    pointer-events: all;
-}
-
-#img2.show {
-    transform: translateX(0) rotate(5deg);
-}
 
 /* Container cho lời chúc bằng hạt (nếu bạn muốn dùng text-based) */
 .particle-text-container {
