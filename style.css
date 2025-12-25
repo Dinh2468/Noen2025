@@ -89,15 +89,40 @@ canvas {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     opacity: 0;
-    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Làm hiệu ứng mượt hơn */
+    z-index: 1;
+    /* Độ ưu tiên thấp mặc định */
     transform: scale(0.2) translateX(50px);
     /* Giảm độ trượt để tránh hiện tượng văng ra ngoài khi hiện */
+}
+
+/* KHI DI CHUỘT VÀO MỘT ẢNH BẤT KỲ */
+.memory-photo:hover {
+    transform: scale(1.8) rotate(0deg) !important;
+    /* Phóng to 1.8 lần và xoay thẳng lại */
+    z-index: 999 !important;
+    /* Đưa lên trên cùng tất cả các ảnh khác */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    /* Thêm bóng đổ sâu hơn cho nổi bật */
+    border-color: #ffd700;
+    /* Đổi viền sang màu vàng kim lộng lẫy */
+}
+
+/* HIỆU ỨNG "DẠT RA": Khi đang di chuột vào album, các ảnh KHÔNG được hover sẽ mờ đi và nhỏ lại */
+.photo-album:hover .memory-photo:not(:hover) {
+    opacity: 0.4;
+    /* Làm mờ các ảnh khác */
+    transform: scale(0.8);
+    /* Thu nhỏ các ảnh khác */
+    filter: blur(2px);
+    /* Làm nhòe nhẹ các ảnh không liên quan */
 }
 
 /* Định nghĩa lại vị trí rải rác - Khống chế 'left' chặt chẽ hơn */
 #img1.show {
     top: 5%;
-    left: 5%;
+    left: 0%;
     transform: rotate(-8deg) scale(1);
     opacity: 1;
 }
@@ -111,14 +136,14 @@ canvas {
 
 /* Giảm từ 45% xuống 40% */
 #img3.show {
-    top: 35%;
-    left: -10%;
+    top: 30%;
+    left: -30%;
     transform: rotate(-5deg) scale(1);
     opacity: 1;
 }
 
 #img4.show {
-    top: 55%;
+    top: 40%;
     left: 45%;
     transform: rotate(7deg) scale(1);
     opacity: 1;
@@ -126,9 +151,9 @@ canvas {
 
 /* Giảm từ 50% xuống 45% */
 #img5.show {
-    top: 65%;
-    left: 10%;
-    transform: rotate(-12deg) scale(1);
+    top: 50%;
+    left: 0%;
+    transform: rotate(12deg) scale(1);
     opacity: 1;
 }
 
@@ -154,7 +179,6 @@ canvas {
 
 
 
-/* Container cho lời chúc bằng hạt (nếu bạn muốn dùng text-based) */
 .particle-text-container {
     position: fixed;
     top: 40%;
